@@ -1,0 +1,79 @@
+{
+	"name": "dnszonefile",
+	"displayName": "dns-zone-file",
+	"description": "Bind DNS Zone File",
+	"repository": "https://github.com/auduny/vscode-dnszonefile",
+	"version": "0.0.1",
+	"publisher": "YtterdalVentures",
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"activationEvents": [
+		"onCommand:extension.updateSerial"
+	],
+	"main": "./out/extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.updateSerial",
+				"title": "Update DNSZone Serial"
+			}
+		],
+		"languages": [
+			{
+				"id": "dnszonefile",
+				"aliases": [
+					"Bind Zone Files",
+					"dnszonefile"
+				],
+				"extensions": [
+					".zone",
+					".no",
+					".se",
+					".net",
+					".org",
+					".com",
+					".io",
+					"_24",
+					"_16",
+					"_32",
+					"_48"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "dnszonefile",
+				"scopeName": "text.zone_file",
+				"path": "./syntaxes/zone_file.tmLanguage.json"
+			}
+		]
+	},
+	"dependencies": {
+		"dns-zonefile": "^0.2.9"
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint . --ext .ts,.tsx",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^12.12.0",
+		"@types/vscode": "^1.32.0",
+		"@typescript-eslint/eslint-plugin": "^4.16.0",
+		"@typescript-eslint/parser": "^4.16.0",
+		"eslint": "^7.21.0",
+		"typescript": "^4.4.3"
+	},
+	"__metadata": {
+		"id": "98fbb831-32f6-4b3a-9594-44cd30326415",
+		"publisherDisplayName": "Ytterdal Ventures",
+		"publisherId": "213ed9b9-2bdc-4374-9f73-43d95f05162e",
+		"isPreReleaseVersion": false
+	}
+}

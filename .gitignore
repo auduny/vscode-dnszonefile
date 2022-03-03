@@ -1,0 +1,7 @@
+node_modules
+*.vsix
+test-zones/*
+out
+.DS_STORE
+
+

@@ -1,0 +1,108 @@
+{
+  "fileTypes": [
+    "zone",
+    "db"
+  ],
+  "name": "Bind Zone Files",
+  "patterns": [
+    {
+      "name": "string.quoted.single.address.zone_file",   
+      "match": "^([@0-9a-z\\.\\*_-]*)\\s+(\\d*|IN)\\s*(\\d*|IN)?\\s*(A|AAAA|CNAME|MX|PTR|TXT|NS)\\s+(.*)",
+      "captures": {
+        "1": {
+          "name": "constant.string.dnsname"
+        },
+        "2": {
+          "name": "variable.numberic.ttl"
+        },
+        "3": {
+          "name": "keyword.resourcetype"
+        },
+        "4": {
+          "name": "keyword.resourcetype"
+        },
+        "5": {
+          "name": "string.ipaddress"
+        }
+      }
+    },
+       {
+      "begin": "^([@0-9a-z\\.\\*_-]*)\\s+(\\d*)\\s*(IN)?\\s*(SOA)\\s*(.*)\\s+(.*)\\s+\\(",
+      "beginCaptures": {
+        "1": {
+          "name": "constant.string.dnsname"
+        },
+        "2": {
+          "name": "variable.numberic.ttl"
+        },
+        "3": {
+          "name": "keyword.resourcetype"
+        },
+        "4": {
+          "name": "keyword.resourcetype"
+        },
+        "5": {
+          "name": "string.ipaddress"
+        },
+        "6": {
+          "name": "constant.email"
+        }
+      },
+      "end": "\\)",
+      "name": "string.quoted.single.address.zone_file",
+      "patterns": [
+       {
+          "match": "(\\d{4})(\\d{2})(\\d{2})(\\d*)",
+          "name": "keyword.serial",
+          "captures": {
+            "1": {
+              "name": "constant.year"
+            },
+            "2": {
+              "name": "string.month"
+            },
+            "3": {
+              "name": "keyword.day"
+            },
+            "4": {
+              "name": "variable.numeric"        
+            }
+          }
+        },
+        {
+          "match": ";.*",
+          "name": "comment.line.semicolon.zone_file"
+        },
+        {
+          "match": "\\d+",
+          "name": "variable.numeric.ttl"
+        }
+
+      ]
+    },
+    {
+      "match": ";.*",
+      "name": "comment.line.semicolon.zone_file"
+    },
+    { 
+      "match": "^\\$TTL\\s+(\\d+)",
+      "name": "keyword.ttl",
+      "captures": {
+        "1": {
+          "name": "variable.numeric.ttl"
+        }
+      }
+    },
+    { 
+      "match": "^\\$ORIGIN\\s+(.+)",
+      "name": "keyword.ttl",
+      "captures": {
+        "1": {
+          "name": "string.ipaddress"
+        }
+      }
+    } 
+  ],
+  "scopeName": "text.zone_file",
+  "uuid": "e7258f23-3f2a-4b03-80e1-ac8990b47a6d"
+}
